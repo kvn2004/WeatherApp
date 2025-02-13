@@ -14,6 +14,7 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
+  static int hour = DateTime.now().hour;
   Widget getWeatherIcon(int code) {
     switch (code) {
       case >= 200 && < 300:
@@ -32,6 +33,18 @@ class _HomeScreenState extends State<HomeScreen> {
         return Image.asset('assets/imges/7.png');
       default:
         return Image.asset('assets/imges/7.png');
+    }
+  }
+
+  String getGreetingText() {
+    if (hour < 12) {
+      return "Good Morning ☀️";
+    } else if (hour < 17) {
+      return "Good Afternoon 🌤️";
+    } else if (hour < 20) {
+      return "Good Evening 🌆";
+    } else {
+      return "Good Night 🌙";
     }
   }
 
@@ -114,7 +127,7 @@ class _HomeScreenState extends State<HomeScreen> {
                             height: 8,
                           ),
                           Text(
-                            "Good Morning",
+                            getGreetingText(),
                             style: TextStyle(
                               color: Colors.white,
                               fontSize: 25,
@@ -318,6 +331,19 @@ class _HomeScreenState extends State<HomeScreen> {
                     return Container();
                   }
                 },
+              ),
+              Padding(
+                padding: const EdgeInsets.fromLTRB(0, 755, 0, 0),
+                child: Center(
+                  child: Text(
+                    '© Vihanga Nimsara Software.INC',
+                    style: TextStyle(
+                      color: Color(0xffFFFFFF),
+                      fontWeight: FontWeight.w300,
+                      fontSize: 13,
+                    ),
+                  ),
+                ),
               ),
             ],
           ),
